@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 public class VentanaPrincipal {
 
+	JOptionPane panelFinal;
 	//La ventana principal, en este caso, guarda todos los componentes:
 	JFrame ventana;
 	JPanel panelImagen;
@@ -141,7 +142,16 @@ public class VentanaPrincipal {
 	public void inicializarListeners(){
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
+				int x = i;
+				int y = j;
+			botonesJuego[i][j].addActionListener(new ActionListener() {
 				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});	
 			}
 		}
 	}
@@ -170,7 +180,10 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		panelFinal = new JOptionPane();
+		if (porExplosion == true) {
+			
+		}
 	}
 
 	/**
