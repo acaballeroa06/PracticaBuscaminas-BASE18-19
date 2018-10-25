@@ -139,7 +139,11 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los lísteners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				
+			}
+		}
 	}
 	
 	
