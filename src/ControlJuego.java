@@ -38,12 +38,23 @@ public class ControlJuego {
 	public void inicializarPartida() {
 		// TODO: Repartir minas e inicializar puntación. Si hubiese un tablero anterior,
 		// lo pongo todo a cero para inicializarlo.
-		Random random = new Random();
+		int contador = 0;
+		Random random = new Random(); // Aleatorios usando la clase random
 		int aleatorio = random.nextInt(9);
-		for (int i = 0; i < 20; i++) {
-			int x = aleatorio;
-			int y = aleatorio;
-			tablero[x][y] = -1;
+
+		while (contador < MINAS_INICIALES) {
+			for (int i = 0; i < MINAS_INICIALES; i++) {
+				int x = aleatorio;
+				int y = aleatorio;
+				tablero[x][y] = MINA;
+			}
+		}
+
+		for (int i = 0; i < LADO_TABLERO; i++) {
+			System.out.println();
+			for (int j = 0; j < tablero.length; j++) {
+				System.out.println(" " + tablero[i][j]);
+			}
 		}
 
 		// Al final del método hay que guardar el número de minas para las casillas que
