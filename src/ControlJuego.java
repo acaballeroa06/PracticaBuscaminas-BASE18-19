@@ -149,17 +149,17 @@ public class ControlJuego {
 	 *            : posicion horizontal de la cela.
 	 * @return Un entero que representa el numero de minas alrededor de la celda
 	 */
-	public int getMinasAlrededor(int i, int j) {
-
-	}
+//	public int getMinasAlrededor(int i, int j) {
+//
+//	}
 
 	/**
 	 * Metodo que devuelve la puntuacion actual
 	 * 
 	 * @return Un entero con la puntuacion actual
 	 */
-	public int getPuntuacion() {
-
-	}
+//	public int getPuntuacion() {
+//
+//	}
 
 }

@@ -148,8 +148,13 @@ public class VentanaPrincipal {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
+					if (juego.abrirCasilla(x, y)) {
+						mostrarFinJuego(true);
+					} else {
+						mostrarNumMinasAlrededor(x, y);
+						actualizarPuntuacion();
+					}
+						
 				}
 			});	
 			}
@@ -170,7 +175,7 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		
 	}
 	
 	
@@ -182,7 +187,7 @@ public class VentanaPrincipal {
 	public void mostrarFinJuego(boolean porExplosion) {
 		panelFinal = new JOptionPane();
 		if (porExplosion == true) {
-			
+			JOptionPane.showMessageDialog(null, "Has explotado una bomba!");
 		}
 	}
 
