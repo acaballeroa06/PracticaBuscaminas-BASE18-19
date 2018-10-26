@@ -3,9 +3,9 @@ import java.util.Random;
 
 /**
  * Clase gestora del tablero de juego. Guarda una matriz de enteros representado
- * el tablero. Si hay una mina en una posicion guarda el numero -1 Si no hay
- * una mina, se guarda cuantas minas hay alrededor. Almacena la puntuacion de
- * la partida
+ * el tablero. Si hay una mina en una posicion guarda el numero -1 Si no hay una
+ * mina, se guarda cuantas minas hay alrededor. Almacena la puntuacion de la
+ * partida
  * 
  * @author andrescaballero
  *
@@ -31,9 +31,9 @@ public class ControlJuego {
 	 * Metodo para generar un nuevo tablero de partida:
 	 * 
 	 * @pre: La estructura tablero debe existir.
-	 * @post: Al final el tablero se habra inicializado con tantas minas como
-	 *        marque la variable MINAS_INICIALES. El resto de posiciones que no son
-	 *        minas guardan en el entero cuantas minas hay alrededor de la celda
+	 * @post: Al final el tablero se habra inicializado con tantas minas como marque
+	 *        la variable MINAS_INICIALES. El resto de posiciones que no son minas
+	 *        guardan en el entero cuantas minas hay alrededor de la celda
 	 */
 	public void inicializarPartida() {
 		// TODO: Repartir minas e inicializar puntación. Si hubiese un tablero anterior,
@@ -71,8 +71,8 @@ public class ControlJuego {
 	/**
 	 * Calculo de las minas adjuntas: Para calcular el numero de minas tenemos que
 	 * tener en cuenta que no nos salimos nunca del tablero. Por lo tanto, como
-	 * mucho la i y la j valdran LADO_TABLERO-1. Por lo tanto, como poco la i y la
-	 * j valdran 0.
+	 * mucho la i y la j valdran LADO_TABLERO-1. Por lo tanto, como poco la i y la j
+	 * valdran 0.
 	 * 
 	 * @param i:
 	 *            posicion vertical de la casilla a rellenar
@@ -82,7 +82,8 @@ public class ControlJuego {
 	 **/
 	private int calculoMinasAdjuntas(int i, int j) {
 		int contador = 0;
-		for (int k = Math.max(0, i - 1); k <= Math.min(i + 1, LADO_TABLERO - 1); k++) {	//Con esto lo que ahcemos es que no se salga del tablero
+		for (int k = Math.max(0, i - 1); k <= Math.min(i + 1, LADO_TABLERO - 1); k++) { // Con esto lo que ahcemos es
+																						// que no se salga del tablero
 			for (int k2 = Math.max(0, j - 1); k2 <= Math.min(j + 1, LADO_TABLERO - 1); k2++) {
 				if (tablero[k][k2] == MINA) {
 					contador++;
@@ -109,7 +110,7 @@ public class ControlJuego {
 		} else {
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -119,9 +120,9 @@ public class ControlJuego {
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son
 	 *         minas.
 	 **/
-	public boolean esFinJuego() {
-		
-	}
+//	public boolean esFinJuego() {
+//		
+//	}
 
 	/**
 	 * Metodo que pinta por pantalla toda la informacion del tablero, se utiliza
@@ -149,17 +150,17 @@ public class ControlJuego {
 	 *            : posicion horizontal de la cela.
 	 * @return Un entero que representa el numero de minas alrededor de la celda
 	 */
-//	public int getMinasAlrededor(int i, int j) {
-//
-//	}
+	public int getMinasAlrededor(int i, int j) {
+		return tablero[i][j];
+	}
 
 	/**
 	 * Metodo que devuelve la puntuacion actual
 	 * 
 	 * @return Un entero con la puntuacion actual
 	 */
-//	public int getPuntuacion() {
-//
-//	}
+	public int getPuntuacion() {
+		return puntuacion;
+	}
 
 }
