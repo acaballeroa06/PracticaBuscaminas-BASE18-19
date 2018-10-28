@@ -137,56 +137,56 @@ public class VentanaPrincipal {
 	 * programa
 	 */
 	public void inicializarListeners() {
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				int x = i;
-				int y = j;
-				botonesJuego[i][j].addActionListener(new ActionListener() {
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].addActionListener(new ActionBoton(this, i, j));
+			}
+		}
+		botonEmpezar.addActionListener(new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if (juego.abrirCasilla(x, y)) {
-							mostrarFinJuego(true);
-						} else {
-							mostrarNumMinasAlrededor(x, y);
-							actualizarPuntuacion();
-							refrescarPantalla();
-						}
-					}
-				});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventana.remove(panelEmpezar);
+				ventana.remove(panelImagen);
+				ventana.remove(panelJuego);
+				ventana.remove(panelPuntuacion);
+				juego = new ControlJuego();
+				inicializar();
+				refrescarPantalla();
+			}
+		});
+	}
+
+	/**
+	 * Pinta en la pantalla el numero de minas que hay alrededor de la celda Saca el
+	 * boton que haya en la celda determinada y añade un JLabel centrado y no
+	 * editable con el numero de minas alrededor. Se pinta el color del texto segun
+	 * la siguiente correspondecia (consultar la variable correspondeciaColor): - 0
+	 * : negro - 1 : cyan - 2 : verde - 3 : naranja - 4 o más : rojo
+	 * 
+	 * @param i: posicion vertical de la celda.
+	 * @param j: posicion horizontal de la celda.
+	 */
+	public void mostrarNumMinasAlrededor(int i, int j) {
+		int mina = juego.getMinasAlrededor(i, j);
+		for (int k = 0; k < correspondenciaColores.length; k++) {
+			if (mina == k) {
+				panelesJuego[i][j].remove(botonesJuego[i][j]);
+				JLabel numeroMinas = new JLabel("" + mina);
+				numeroMinas.setHorizontalAlignment(SwingConstants.CENTER);
+				numeroMinas.setForeground(correspondenciaColores[k]);
+				panelesJuego[i][j].add(numeroMinas);
+				refrescarPantalla();
 			}
 		}
 	}
 
 	/**
-	 * Pinta en la pantalla el numero de minas que hay alrededor de la celda Saca
-	 * el boton que haya en la celda determinada y añade un JLabel centrado y no
-	 * editable con el numero de minas alrededor. Se pinta el color del texto
-	 * segun la siguiente correspondecia (consultar la variable
-	 * correspondeciaColor): - 0 : negro - 1 : cyan - 2 : verde - 3 : naranja - 4 o
-	 * más : rojo
-	 * 
-	 * @param i:
-	 *            posicion vertical de la celda.
-	 * @param j:
-	 *            posicion horizontal de la celda.
-	 */
-	public void mostrarNumMinasAlrededor(int i, int j) {
-		panelesJuego[i][j].removeAll();
-		JTextField nuevo = new JTextField();
-		nuevo.setText(Integer.toString(juego.getMinasAlrededor(i, j)));
-		nuevo.setHorizontalAlignment(SwingConstants.CENTER);
-		nuevo.setForeground(correspondenciaColores[juego.getPuntuacion()]);
-		nuevo.setEnabled(false);
-		panelJuego.add(nuevo);
-	}
-
-	/**
 	 * Muestra una ventana que indica el fin del juego
 	 * 
-	 * @param porExplosion
-	 *            : Un booleano que indica si es final del juego porque ha explotado
-	 *            una mina (true) o bien porque hemos desactivado todas (false)
+	 * @param porExplosion : Un booleano que indica si es final del juego porque ha
+	 *                     explotado una mina (true) o bien porque hemos desactivado
+	 *                     todas (false)
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el
 	 *       juego.
 	 */
@@ -194,8 +194,18 @@ public class VentanaPrincipal {
 		panelFinal = new JOptionPane();
 		if (porExplosion == true) {
 			JOptionPane.showMessageDialog(null, "Has explotado una bomba!"); // Asi se usa el JOptionPane
+			for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					botonesJuego[i][j].setEnabled(false);
+				}
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Has ganado, �Felicidades!");
+			for (int i = 0; i < botonesJuego.length; i++) {
+				for (int j = 0; j < botonesJuego[i].length; j++) {
+					botonesJuego[i][j].setEnabled(false);
+				}
+			}
 		}
 	}
 

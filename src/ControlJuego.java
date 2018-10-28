@@ -38,22 +38,18 @@ public class ControlJuego {
 	public void inicializarPartida() {
 		// TODO: Repartir minas e inicializar puntación. Si hubiese un tablero anterior,
 		// lo pongo todo a cero para inicializarlo.
+		puntuacion = 0;
+		Random rd = new Random();
+		int x;
+		int y;
 		int contador = 0;
-		Random random = new Random(); // Aleatorios usando la clase random
-		int aleatorio = random.nextInt(9);
 
-		while (contador < MINAS_INICIALES) {
-			for (int i = 0; i < MINAS_INICIALES; i++) {
-				int x = aleatorio;
-				int y = aleatorio;
+		while (contador != MINAS_INICIALES) {
+			x = rd.nextInt(10);
+			y = rd.nextInt(10);
+			if (tablero[x][y] != MINA) {
 				tablero[x][y] = MINA;
-			}
-		}
-
-		for (int i = 0; i < LADO_TABLERO; i++) {
-			System.out.println();
-			for (int j = 0; j < tablero.length; j++) {
-				System.out.println(" " + tablero[i][j]);
+				contador++;
 			}
 		}
 
@@ -66,6 +62,8 @@ public class ControlJuego {
 				}
 			}
 		}
+
+		depurarTablero();
 	}
 
 	/**
@@ -82,8 +80,7 @@ public class ControlJuego {
 	 **/
 	private int calculoMinasAdjuntas(int i, int j) {
 		int contador = 0;
-		for (int k = Math.max(0, i - 1); k <= Math.min(i + 1, LADO_TABLERO - 1); k++) { // Con esto lo que ahcemos es
-																						// que no se salga del tablero
+		for (int k = Math.max(0, i - 1); k <= Math.min(i + 1, LADO_TABLERO - 1); k++) { // Con esto lo que ahcemos es																// que no se salga del tablero
 			for (int k2 = Math.max(0, j - 1); k2 <= Math.min(j + 1, LADO_TABLERO - 1); k2++) {
 				if (tablero[k][k2] == MINA) {
 					contador++;
@@ -106,6 +103,7 @@ public class ControlJuego {
 	 */
 	public boolean abrirCasilla(int i, int j) {
 		if (tablero[i][j] == MINA) {
+			puntuacion++;
 			return true;
 		} else {
 			return false;
@@ -120,9 +118,14 @@ public class ControlJuego {
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son
 	 *         minas.
 	 **/
-//	public boolean esFinJuego() {
-//		
-//	}
+	public boolean esFinJuego() {
+		if (puntuacion == (LADO_TABLERO * LADO_TABLERO - MINAS_INICIALES)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 	/**
 	 * Metodo que pinta por pantalla toda la informacion del tablero, se utiliza

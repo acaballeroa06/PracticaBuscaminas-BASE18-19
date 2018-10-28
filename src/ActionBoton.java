@@ -1,28 +1,43 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
-
 /**
  * Clase que implementa el listener de los botones del Buscaminas.
  * De alguna manera tendra que poder acceder a la ventana principal.
  * Se puede lograr pasando en el constructor la referencia a la ventana.
  * Recuerda que desde la ventana, se puede acceder a la variable de tipo ControlJuego
- * @author jesusredondogarcia
+ * @author andrescaballero
  **
  */
 public class ActionBoton implements ActionListener{
-
-	public ActionBoton() {
-		
-	}
+	VentanaPrincipal ventanaPrincipal;
+	int x;
+	int y;
 	
+	
+	public ActionBoton(VentanaPrincipal ventanaPrincipal, int fila, int columna) {
+		this.ventanaPrincipal = ventanaPrincipal;
+		this.x = x;
+		this.y = y;
+	}
+
 	/**
-	 *Accion que ocurrira cuando pulsamos uno de los botones.
+	 *Acción que ocurrirá cuando pulsamos uno de los botones.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//TODO
+		if (ventanaPrincipal.juego.abrirCasilla(x, y)) {
+			ventanaPrincipal.mostrarNumMinasAlrededor(x, y);
+			ventanaPrincipal.refrescarPantalla();
+			ventanaPrincipal.actualizarPuntuacion();
+			
+		}else {
+			if (ventanaPrincipal.juego.esFinJuego() == false) {
+				ventanaPrincipal.mostrarFinJuego(true);
+			}else {
+				ventanaPrincipal.mostrarFinJuego(false);
+			}
+		}
 	}
 
 }
