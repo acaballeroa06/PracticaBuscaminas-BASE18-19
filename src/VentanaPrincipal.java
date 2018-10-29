@@ -227,7 +227,7 @@ public class VentanaPrincipal {
 	/**
 	 * Metodo que devuelve el control del juego de una ventana
 	 * 
-	 * @return un ControlJuego con el control del juego de la ventana
+	 * @return un Contro                                                                                                                                                                                                                            lJuego con el control del juego de la ventana
 	 */
 	public ControlJuego getJuego() {
 		return juego;
