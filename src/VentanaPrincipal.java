@@ -13,6 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author Andres Caballero
+ *Esta clase es la ventana principal en la que inicializan 
+ *todos los componentes del buscaminas
+ */
+
 public class VentanaPrincipal {
 
 	JOptionPane panelFinal;
